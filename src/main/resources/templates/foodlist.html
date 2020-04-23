@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+<head>
+    <title>Foodlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+<body>
+	<h1>Here is our list of our delicious meals!</h1>
+	<div class="well"><span th:inline="text">Welcome:<strong> [[${#httpServletRequest.remoteUser}]]!</strong></span></div>
+ 	 <form th:action="@{/logout}" method="post">
+             <input class="btn btn-danger" type="submit" value="Logout"/>
+         </form>
+    <table class="table table-striped">
+		<tr>
+		    <th>Food</th>
+		    <th>Information</th>
+		    <th>Price (€)</th>
+		    <th></th>
+		</tr>  
+    	<tr th:each = "food : ${foods}">
+    		<td th:text="${food.foodname}"></td> <!-- This lists the data for each of the attributes next to their other information. -->
+    		<td th:text="${food.info}"></td> <!-- This lists the data for each of the attributes next to their other information. -->
+    		<td th:text="${food.price}"></td> <!-- This lists the data for each of the attributes next to their other information. -->
+    		<td><a th:href="@{/ordercompleted}"><button class="btn btn-success">Order</button></a>	<!-- This is shown to both users and admin. -->
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/delete/{id}(id=${food.id})}"><button class="btn btn-danger">Delete</button></a></td>   		<!-- This is only shown to admin. -->
+    		<td sec:authorize="hasAuthority('ADMIN')"><a th:href="@{/modify/{id}(id=${food.id})}"  class="btn btn-warning">Modify</a></td>     <!-- This is only shown to admin. -->
+    	</tr>
+     </table> 	
+     <td sec:authorize="hasAuthority('ADMIN')"><a href="/add" class="btn btn-success">Add Food</a></td> <!-- This is only shown to admin. -->
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Foodlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+</head>
+
+<!-- This page is shown when editing a certain meal -->
+
+<body>
+	<h1>Add food</h1>
+	<div>
+	
+		<!-- Firstly it allows to edit a certain data using it's own unique ID -->
+		<!-- There are boxes for each attribute to be edited. -->
+		<form th:object="${food}" th:action="@{../save}" action="#" method="post">
+			<label for="id"></label>
+			<input type="hidden" id="id" th:field="*{id}" readonly="readonly" /> 
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="foodname">Food</label>
+			<input type="text" id="foodname" th:field="*{foodname}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="info">Information</label>
+			<input type="text" id="info" th:field="*{info}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="price">Price</label>
+			<input type="text" id="price" th:field="*{price}" /><br />
+			<div style="clear: both; display: block; height: 10px;"></div>
+					
+			<div style="clear: both; display: block; height: 10px;"></div>
+			<input class="btn btn-success" type="submit" value="Save"></input>
+		</form>
+	</div>
+</body>
+</html>

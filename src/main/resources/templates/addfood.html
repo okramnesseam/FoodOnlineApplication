@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Foodlist</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link type="text/css" rel="stylesheet" href="/css/bootstrap.min.css" th:href="@{/css/bootstrap.min.css}" />
+
+</head>
+<body>
+	<h1>Add food</h1>
+	<div>
+		<form th:object="${food}" th:action="@{save}" action="#" method="post"> <!-- This enables creating new data for the application. -->
+		  	<label for="foodname">Food</label>
+			<input type="text" id="foodname" th:field="*{foodname}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="info">Information</label>
+			<input type="text" id="info" th:field="*{info}" />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	<label for="price">Price</label>
+			<input type="text" id="price" th:field="*{price}" /><br />
+			<div style="clear: both; display: block; height: 10px;"></div>
+		  	
+						<div style="clear: both; display: block; height: 10px;"></div>
+			
+						<input class="btn btn-success" type="submit" value="Save"></input> <!-- By submitting, it gets listed to foodlist -->
+		</form>
+	</div>
+</body>
+</html>
